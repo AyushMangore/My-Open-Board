@@ -10,7 +10,7 @@ const app = express(); // reference of app (initialization)
 
 app.use(express.static("public")); // to connect to our index html page
 
-let port = 5000;
+let port = process.env.PORT || 5000;
 
 let server = app.listen(port, () => {
     console.log("Listening to port : "+port); // to start server node app.js
