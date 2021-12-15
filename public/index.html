@@ -1,3 +1,10 @@
+<!-- 
+    Author -> Ayush Mangore
+    In this project I have tried to imitate open board and added some more functionality
+    here user can write on the board and also can make sticky notes and user can download the
+    screenshot of the board and upload any images into it. With the help of socket io whole project
+    can be visualized on multiple systems at the same time. 
+ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +17,11 @@
     <title>Open Board Clone</title>
 </head>
 <body>
+    <!-- This is a hamburger icon container -->
     <div class="options-cont">
         <i class="fas fa-bars"></i>
     </div>
+    <!-- These are all the options tool container -->
     <div class="tools-cont scale-tools">
         <img src="Icons/Pencil.svg" class="pencil">
         <img src="Icons/Eraser.svg" class="eraser">
@@ -23,6 +32,10 @@
         <img src="Icons/Undo.svg" class="undo">
     </div>
     
+    <!-- Pencil container contains two options
+         one for selecting the width and 
+         another for selecting color
+     -->
     <div class="pencil-tool-cont scale-tools">
         <div class="pencil-width-cont">
             <input type="range" min="2" max="10" value="3" class="pencil-width">
@@ -33,9 +46,12 @@
             <div class="blue pencil-color"></div>
         </div>
     </div>
+    <!-- Eraser width container -->
     <div class="eraser-tool-cont scale-tools">
         <input type="range" min="2" max="10" value="3" class="eraser-width">
     </div>
+
+    <!-- below is the sticky notes container we will generate it dynamically -->
 
     <!-- <div class="sticky-cont">
         <div class="header-cont">
@@ -47,11 +63,15 @@
         </div>
     </div> -->
 
-    <canvas></canvas>
+    <canvas>
+        <!-- filled dynamically -->
+    </canvas>
+    <!-- included socket.io api -->
     <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
     <script>
         // to connect with front end
         // let socket = io.connect("http://localhost:5000");
+        // url of the webpage passed to socket
         let socket = io.connect("https://write-and-share.herokuapp.com/");
     </script>
     <script src="./tools.js"></script>

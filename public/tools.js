@@ -1,24 +1,28 @@
+// Acquring the reference of tools and options container with the help of query selector
 let toolsCont = document.querySelector(".tools-cont");
 let optionsCont = document.querySelector(".options-cont");
-
+// Acquring the reference of pencil and eraser container with the help of query selector
 let penciltoolCont = document.querySelector(".pencil-tool-cont");
 let erasertoolCont = document.querySelector(".eraser-tool-cont");
-
+// Acquring the reference of pencil and tool with the help of query selector
 let pencil = document.querySelector(".pencil");
 let eraser = document.querySelector(".eraser");
-
+// Acquring the reference of sticky notes container with the help of query selector
 let sticky = document.querySelector(".sticky");
 
+// we will select and unselect penicl and eraser by toggling the two flags
 let pencilFlag = false;
 let eraserFlag = false;
-
+// option flag for displaying and hiding the options tab
 let optionsFlag = true;
-
+// Acquring the reference of upload container with the help of query selector
 let upload = document.querySelector(".upload");
 
 // show : true
 // hide : false
-
+// Whenever user will click on hamburger icon, we have to hide the options tab
+// if visible initially or vice versa
+// we have created separate functions for that
 optionsCont.addEventListener("click", (e) => {
     
     optionsCont.classList.add("scale-capture");
@@ -38,12 +42,14 @@ optionsCont.addEventListener("click", (e) => {
 })
 
 // fa-times represents close
+// when this function will be called we will change our display style to flex of the tool box
 function opentools() {
     let iconElem = optionsCont.children[0];
     iconElem.classList.remove("fa-times");
     iconElem.classList.add("fa-bars");
     toolsCont.style.display = "flex";
 }
+// when this function will be called we will change our display style to none of the tool box
 function closetools() {
     let iconElem = optionsCont.children[0];
     iconElem.classList.add("fa-times");
@@ -54,6 +60,9 @@ function closetools() {
     erasertoolCont.style.display = "none";
 }
 
+// below is the click listener on pencil icon when ever it will be clicked 
+// then we have to display the container for width and color of the pencil
+// or if already displayed then we have to hide we can simply toggle out pencil flag
 pencil.addEventListener("click", (e) => {
     pencil.classList.add("scale-capture");
     pencilFlag = !pencilFlag;
@@ -67,6 +76,7 @@ pencil.addEventListener("click", (e) => {
     }, 500);
 })
 
+// whenever eraser will be clicked then width option will appear or hide here also we will use eraser flag for toggling
 eraser.addEventListener("click", (e) => {
     eraser.classList.add("scale-capture");
     eraserFlag = !eraserFlag;
@@ -80,12 +90,19 @@ eraser.addEventListener("click", (e) => {
     }, 500);
 })
 
+// whenever upload button will be clicked then we will make a html element with the help
+// of create input element function and set our type to file and implicitly click it, this will
+// browse thee files in  the computer from where user can select any imagae to upload 
 upload.addEventListener("click", (e) =>{
     upload.classList.add("scale-capture");
     let input = document.createElement("input");
     input.setAttribute("type","file");
     input.click();
-
+    // input tag has a listener called change which denoted file is uploaded then we will read single
+    // file multiple files can also be reead the nwe will create a url with the help URL.createobjectURL function
+    // now to display the image we have to create a div element for this we will write our html and store it in a 
+    // variable and set our image source as the url and finally we will call a function create sticky
+    // because we will display our image as a sticky note
     input.addEventListener("change", (e) => {
         let file = input.files[0];
         let url = URL.createObjectURL(file);
@@ -107,6 +124,12 @@ upload.addEventListener("click", (e) =>{
     }, 500);
 })
 
+// below function is used to display sticky notes
+// first we will create a div element and set a class then we will paste the inner html
+// of this div tag same as that of p[assed in paramaeter now we will append our sticky element
+// in document body, now our sticky element has two options one for minimizing and one for removing
+// these functionality will be handled in sepaate function,drag and drop feature has been also implemented
+// in different function called drag and drop
 function createSticky(stickyTemplateHtml){
     let stickyCont = document.createElement("div");
     stickyCont.setAttribute("class", "sticky-cont scale-tools");
@@ -127,7 +150,8 @@ function createSticky(stickyTemplateHtml){
         return false;
     };
 }
-
+// if sticky icon is clicked then we have to create a sticky element but not with the image container
+// but with the text area container, one line will change instead of image tag we will use textarea tag
 sticky.addEventListener("click", (e) => {
     sticky.classList.add("scale-capture");
     let stickyCont = document.createElement("div");
@@ -148,6 +172,9 @@ sticky.addEventListener("click", (e) => {
     }, 500);
 })
 
+// if remove is clicked simply remove the whole html element
+// if minimize is clicked then we will select our note container and toggle 
+// its display property if earlier it was block the nwe will set it to none or vice versa
 function noteAction(minimize,remove,stickyCont){
     remove.addEventListener("click", (e) => {
        
@@ -166,6 +193,7 @@ function noteAction(minimize,remove,stickyCont){
     })
 }
 
+// mouse down is the event and sticky container is the element
 function dragAnddrop(element,event){
 
     let shiftX = event.clientX - element.getBoundingClientRect().left;
@@ -184,14 +212,15 @@ function dragAnddrop(element,event){
           element.style.top = pageY - shiftY + 'px';
         }
       
+        // where ever mouse will point element will follow
         function onMouseMove(event) {
           moveAt(event.pageX, event.pageY);
         }
       
-        // move the ball on mousemove
+        // move the element on mousemove
         document.addEventListener('mousemove', onMouseMove);
       
-        // drop the ball, remove unneeded handlers
+        // drop the element, remove unneeded handlers
         element.onmouseup = function() {
           document.removeEventListener('mousemove', onMouseMove);
           element.onmouseup = null;
