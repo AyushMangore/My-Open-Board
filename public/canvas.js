@@ -18,8 +18,8 @@ let download = document.querySelector(".download");
 let redo = document.querySelector(".redo");
 let undo = document.querySelector(".undo");
 
-// defult color of pencil will be red and eraser will be white
-// default width of the pencil and eraser will be same as that we have kept therein html element
+// default color of pencil will be red and eraser will be white
+// default width of the pencil and eraser will be same as that we have kept there in html element
 let pencolor = "red";
 let erasercolor = "white";
 let penwidth = pencilwidthElem.value;
@@ -69,7 +69,7 @@ canvas.addEventListener("mousemove", (e) =>{
             x: e.clientX,
             y: e.clientY,
             color : eraserFlag ? erasercolor : pencolor,
-            // eraser eidth will only be selected if eraser is selected
+            // eraser width will only be selected if eraser is selected
             width : eraserFlag ? eraserwidth : penwidth
         }
         // will emit to server
@@ -77,7 +77,7 @@ canvas.addEventListener("mousemove", (e) =>{
     }
 })
 // if user will release the mouse then flag will be false and we store this instance in our undo redo tracker array
-// ny creating a url of the canvas and set our track to new updated length of the array
+// creating a url of the canvas and set our track to new updated length of the array
 canvas.addEventListener("mouseup", (e) => {
     mousedown = false;
 
@@ -123,7 +123,7 @@ undo.addEventListener("click", (e) => {
     }, 500);
 })
 
-// if redo will be clicked the nreverse operation than that of undo will take place
+// if redo will be clicked then reverse operation than that of undo will take place
 // instead of decrementing, we will increment the track value 
 redo.addEventListener("click", (e) => {
     redo.classList.add("scale-capture");
@@ -148,10 +148,10 @@ function undoredocanvas(trackObj){
     track = trackObj.trackValue;
     undoredoTracker = trackObj.undoredoTracker;
 
-    // now as we know wwe have stored the canvas urls in the array
+    // now as we know, we have stored the canvas urls in the array
     // simply we will fetch the url stored in particular track
-    // then we will create a image reference and pass image source as our url the nwe will load our
-    // imaage as a canvas drawing on the full screen on the window
+    // then we will create a image reference and pass image source as our url then we will load our
+    // image as a canvas drawing on the full screen on the window
     let url = undoredoTracker[track];
     let img = new Image(); // reference
     img.src = url;
@@ -178,7 +178,7 @@ function drawStroke(strokeObj){
 }
 
 // we have three color options in the pencil we will iterate through them
-// and attacth a click listener and which ever is clicked its first class list will be collected
+// and attacth a click listener and which ever is clicked, its first class list will be collected
 // and we will set it as our pen color and also we will update the tools stroke style color at the same time
 pencilcolor.forEach((colorElem) => {
     colorElem.addEventListener("click", (e) => {
@@ -236,6 +236,7 @@ download.addEventListener("click", (e) => {
 // to know socket has sent me some data
 // on() Start listening for socket events from Sails with the specified eventName . 
 // Triggers the provided callback function when a matching event is received.
+// begin path
 socket.on("beginPath", (data) => {
     // data is the data which we are receiving through server
     // we will call the function associated with "beginPath" event

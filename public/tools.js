@@ -45,15 +45,15 @@ optionsCont.addEventListener("click", (e) => {
 // when this function will be called we will change our display style to flex of the tool box
 function opentools() {
     let iconElem = optionsCont.children[0];
-    iconElem.classList.remove("fa-times");
-    iconElem.classList.add("fa-bars");
+    iconElem.classList.add("fa-times");
+    iconElem.classList.remove("fa-bars");
     toolsCont.style.display = "flex";
 }
 // when this function will be called we will change our display style to none of the tool box
 function closetools() {
     let iconElem = optionsCont.children[0];
-    iconElem.classList.add("fa-times");
-    iconElem.classList.remove("fa-bars");
+    iconElem.classList.remove("fa-times");
+    iconElem.classList.add("fa-bars");
     toolsCont.style.display = "none";
 
     penciltoolCont.style.display = "none";
@@ -92,14 +92,14 @@ eraser.addEventListener("click", (e) => {
 
 // whenever upload button will be clicked then we will make a html element with the help
 // of create input element function and set our type to file and implicitly click it, this will
-// browse thee files in  the computer from where user can select any imagae to upload 
+// browse the files in  the computer from where user can select any imagae to upload 
 upload.addEventListener("click", (e) =>{
     upload.classList.add("scale-capture");
     let input = document.createElement("input");
     input.setAttribute("type","file");
     input.click();
-    // input tag has a listener called change which denoted file is uploaded then we will read single
-    // file multiple files can also be reead the nwe will create a url with the help URL.createobjectURL function
+    // input tag has a listener called change which denotes, file is uploaded then we will read single
+    // file, multiple files can also be reead. We will create a url with the help URL.createobjectURL function
     // now to display the image we have to create a div element for this we will write our html and store it in a 
     // variable and set our image source as the url and finally we will call a function create sticky
     // because we will display our image as a sticky note
@@ -126,7 +126,7 @@ upload.addEventListener("click", (e) =>{
 
 // below function is used to display sticky notes
 // first we will create a div element and set a class then we will paste the inner html
-// of this div tag same as that of p[assed in paramaeter now we will append our sticky element
+// of this div tag same as that of passed in paramaeter now we will append our sticky element
 // in document body, now our sticky element has two options one for minimizing and one for removing
 // these functionality will be handled in sepaate function,drag and drop feature has been also implemented
 // in different function called drag and drop

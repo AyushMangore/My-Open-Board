@@ -2,7 +2,7 @@
 // npm install express
 // download socket.io
 // npm install socket.io
-// first we will require express and socket
+// first we will require express and socket.
 const express = require("express");
 const socket = require("socket.io");
 
